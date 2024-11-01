@@ -33,3 +33,10 @@ export const SignupFormSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   });
+
+export const LoginFormSchema = z.object({
+  username: z.string({ message: "Please enter your username" }).toLowerCase(),
+  password: z
+    .string({ message: "Password is required" })
+    .min(6, "Password must contain 6 characters"),
+});

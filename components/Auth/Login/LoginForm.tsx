@@ -6,24 +6,21 @@ import { useForm } from "react-hook-form";
 import { Form } from "../../ui/form";
 import FormInput from "../../ui/Input/FormInput";
 import FormPasswordField from "@/components/ui/Input/FormPasswordField";
-import { SignupFormSchema } from "@/Schema/AuthSchema";
+import { LoginFormSchema } from "@/Schema/AuthSchema";
 import { z } from "zod";
 
-const SignUpForm = () => {
-  const form = useForm<z.infer<typeof SignupFormSchema>>({
-    resolver: zodResolver(SignupFormSchema),
+const LoginForm = () => {
+  const form = useForm<z.infer<typeof LoginFormSchema>>({
+    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
-      username: "",
-      email: "",
-      fullname: "",
+      username: undefined,
       password: "",
-      confirmPassword: "",
     },
   });
 
   const { handleSubmit } = form;
 
-  function onSubmit(values: z.infer<typeof SignupFormSchema>) {
+  function onSubmit(values: z.infer<typeof LoginFormSchema>) {
     console.log(values);
   }
 
@@ -33,41 +30,24 @@ const SignUpForm = () => {
         <div className="space-y-[6px]">
           <FormInput
             type="string"
-            label="Name"
-            name="fullname"
-            placeholder="Enter your name"
-          />
-          <FormInput
-            type="string"
             label="Username"
             name="username"
             placeholder="Enter username"
           />
-          <FormInput
-            type="string"
-            label="Email"
-            name="email"
-            placeholder="Enter email"
-          />
+
           <FormPasswordField
             type="password"
             name="password"
             label="Password"
             placeholder="Enter Password"
           />
-          <FormPasswordField
-            type="password"
-            name="confirmPassword"
-            label="Confirm Password"
-            placeholder="Re-enter password"
-          />
         </div>
         <Button className="w-full" type="submit">
-          Create Account
+          Login
         </Button>
       </form>
     </Form>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

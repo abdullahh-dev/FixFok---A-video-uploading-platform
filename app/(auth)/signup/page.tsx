@@ -7,13 +7,13 @@ const SignUpPage = () => {
   return (
     <Card className="w-[390px]">
       <CardHeader>
-        <CardTitle>Create Account</CardTitle>
+        <CardTitle>Sign Up</CardTitle>
       </CardHeader>
       <CardContent>
         <SignUpForm />
         <small className="text-center text-sm text-muted-foreground mt-2 block font-medium leading-none">
           Already have an account?{" "}
-          <Link href="/login" className="underline text-white">
+          <Link href="/login" className="underline dark:text-white">
             Login
           </Link>
         </small>
