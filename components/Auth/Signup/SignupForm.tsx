@@ -3,43 +3,67 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Form } from "../../ui/form";
 import FormInput from "../../ui/Input/FormInput";
+import FormPasswordField from "@/components/ui/Input/FormPasswordField";
+import { SignupFormSchema } from "@/Schema/AuthSchema";
+import { z } from "zod";
 
 const SignUpForm = () => {
-  const formSchema = z.object({
-    username: z
-      .string()
-      .min(2, "Username must be atleast 2 characters")
-      .max(40),
-    email: z.string().email("Enter a valid email address"),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof SignupFormSchema>>({
+    resolver: zodResolver(SignupFormSchema),
     defaultValues: {
       username: "",
       email: "",
+      fullname: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
-  const { handleSubmit } = form;
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof SignupFormSchema>) {
     console.log(values);
   }
 
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div>
+        <div className="space-y-[6px]">
           <FormInput
+            type="string"
+            label="Name"
+            name="fullname"
+            placeholder="Enter your name"
+          />
+          <FormInput
+            type="string"
             label="Username"
             name="username"
             placeholder="Enter username"
           />
-          <FormInput label="Email" name="email" placeholder="Enter email" />
+          <FormInput
+            type="string"
+            label="Email"
+            name="email"
+            placeholder="Enter email"
+          />
+          <FormPasswordField
+            type="password"
+            name="password"
+            label="Password"
+            placeholder="Enter Password"
+          />
+          <FormPasswordField
+            type="password"
+            name="confirmPassword"
+            label="Confirm Password"
+            placeholder="Re-enter password"
+          />
         </div>
         <Button className="w-full" type="submit">
           Submit

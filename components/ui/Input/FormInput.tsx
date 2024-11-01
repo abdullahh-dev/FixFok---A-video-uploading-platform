@@ -15,10 +15,12 @@ const FormInput = ({
   name,
   placeholder,
   label,
+  type,
 }: {
   name: string;
   placeholder: string;
   label: string;
+  type: string;
 }) => {
   const {
     control,
@@ -31,9 +33,17 @@ const FormInput = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-bold">{label}</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input
+              type={type}
+              placeholder={placeholder}
+              className={`focus-visible:ring-1 ${
+                errors[name] &&
+                "bg-red-600/5 border focus-visible:ring-0 border-red-600 "
+              }`}
+              {...field}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
