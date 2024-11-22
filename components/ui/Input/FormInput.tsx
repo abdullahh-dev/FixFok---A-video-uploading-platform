@@ -38,7 +38,7 @@ const FormInput = ({
             <Input
               type={type}
               placeholder={placeholder}
-              className={`focus-visible:ring-1 ${
+              className={`focus-visible:ring-1 text-sm ${
                 errors[name] &&
                 "bg-red-600/5 border focus-visible:ring-0 border-red-600 "
               }`}

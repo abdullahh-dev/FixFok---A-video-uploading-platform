@@ -1,24 +1,16 @@
 import LoginForm from "@/components/Auth/Login/LoginForm";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-import React from "react";
+import AuthCard from "@/components/ui/cards/AuthCard";
 
 const LoginPage = () => {
   return (
-    <Card className="w-[390px]">
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <LoginForm />
-        <small className="text-center text-sm text-muted-foreground mt-2 block font-medium leading-none">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="underline dark:text-white">
-            Signup
-          </Link>
-        </small>
-      </CardContent>
-    </Card>
+    <AuthCard
+      title="Login"
+      footerLabel="Don't have an account?"
+      footerLinkLabel="Signup"
+      footerLinkHref="/signup"
+    >
+      <LoginForm />
+    </AuthCard>
   );
 };
 
